@@ -20,6 +20,12 @@ app.post(`/bot${token}`, (req, res) => {
 const domain = process.env.DOMAIN || 'helloworld-js-8v0w.onrender.com';
 bot.setWebHook(`https://${domain}/bot${token}`);
 
+// Respond to any message with "Hello there"
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, 'Hello there');
+});
+
 // Simple web server to display "Hello, World!" on visiting the URL
 app.get('/', (req, res) => {
   res.send('Hello, World!');
