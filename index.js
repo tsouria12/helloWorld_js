@@ -1,16 +1,21 @@
 const express = require('express');
 const TelegramBot = require('node-telegram-bot-api');
 
-const token = '7434320465:AAFoLd8vdBWF7GaSCjXkNaGbYVK9Jr0yDuQ';
-const bot = new TelegramBot(token, { polling: true });
+const token = process.env.TELEGRAM_BOT_TOKEN || 'YOUR_FALLBACK_TOKEN';
+const bot = new TelegramBot(token);
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// Bot will respond to /start command
-bot.onText(/\/start/, (msg) => {
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId, 'Hello, World!');
+// Webhook route setup
+app.use(express.json());
+app.post(`/bot${token}`, (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
 });
+
+// Set webhook
+const domain = process.env.DOMAIN || 'yourdomain.com'; // Replace with your Render domain
+bot.setWebHook(`https://${domain}/bot${token}`);
 
 // Simple web server to display "Hello, World!" on visiting the URL
 app.get('/', (req, res) => {
