@@ -13,3 +13,4 @@ services:
         value: 'helloworld-js-8v0w.onrender.com'
     staticPublishPath: 'public'
     autoDeploy: true
+ 
