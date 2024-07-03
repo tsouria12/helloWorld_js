@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: telegram-hello-world-bot
+    env: node
+    region: us
+    plan: free
+    buildCommand: 'npm install'
+    startCommand: 'npm start'
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        value: '7434320465:AAFoLd8vdBWF7GaSCjXkNaGbYVK9Jr0yDuQ'
+      - key: DOMAIN
+        value: 'helloworld-js-8v0w.onrender.com'
+    staticPublishPath: 'public'
+    autoDeploy: true
