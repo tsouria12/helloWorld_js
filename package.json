@@ -1,0 +1,15 @@
+{
+  "name": "telegram-hello-world-bot",
+  "version": "1.0.0",
+  "description": "A simple Telegram bot that responds with Hello, World! and a web server that shows Hello, World!",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "node-telegram-bot-api": "^0.54.0"
+  }
+}
